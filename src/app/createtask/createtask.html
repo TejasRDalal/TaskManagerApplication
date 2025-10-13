@@ -1,0 +1,25 @@
+
+ 
+
+  <main class="task-form-container">
+    <h2>Create New Task</h2>
+    <form class="task-form" >
+      <label for="title">Title</label>
+      <input name="taskName" type="text" [(ngModel)]="taskName" placeholder="Enter task name" />
+
+      <label for="description" >Description</label>
+      <textarea name="description" rows="4" [(ngModel)]="description"  placeholder="Enter task description"></textarea>
+
+      <label for="dueDate">Due Date</label>
+      <input type="date" id="dueDate" name="dueDate" [(ngModel)]="dueDate" />
+
+      <label for="status">Status</label>
+      <select id="status" name="status" [(ngModel)]="status">
+        <option value="pending">Pending</option>
+        <option value="in-progress">In Progress</option>
+        <option value="completed">Completed</option>
+      </select>
+
+      <button (click)="onCreateTask()">Create</button>
+    </form>
+  </main>

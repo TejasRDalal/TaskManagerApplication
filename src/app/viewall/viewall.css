@@ -1,0 +1,78 @@
+/* Container for the table for better spacing */
+.table-container {
+  padding: 1.5rem;
+  border-radius: 8px;
+  background-color: #f9fafb; /* Light gray background */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Base table styling */
+table {
+  width: 100%;
+  border-collapse: collapse; /* Merges cell borders */
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+/* Header styling */
+thead {
+  background-color: #4f46e5; /* A primary color for headers */
+  color: white;
+}
+
+th {
+  padding: 1rem 1.5rem;
+  text-align: left;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Body row styling */
+tbody tr {
+  border-bottom: 1px solid #e5e7eb; /* Subtle line between rows */
+  transition: background-color 0.2s ease-in-out;
+}
+
+tbody tr:last-child {
+  border-bottom: none; /* No border on the last row */
+}
+
+/* Zebra-striping for readability */
+tbody tr:nth-child(even) {
+  background-color: #f3f4f6; /* Lighter shade for even rows */
+}
+
+/* Hover effect on rows */
+tbody tr:hover {
+  background-color: #e5e7eb; /* Highlight rows on hover */
+}
+
+td {
+  padding: 1rem 1.5rem;
+  vertical-align: middle;
+}
+
+/* Button styling for actions */
+button {
+  padding: 0.5rem 1rem;
+  margin-right: 0.5rem;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s ease-in-out;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+.update-button {
+  background-color: #10b981; /* Green for "Update" */
+  color: white;
+}
+
+.delete-button {
+  background-color: #ef4444; /* Red for "Delete" */
+  color: white;
+}
