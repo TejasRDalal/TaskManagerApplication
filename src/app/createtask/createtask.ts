@@ -1,28 +1,41 @@
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, FormsModule, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Createtaskservice } from '../createtaskservice';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-createtask',
-  imports: [FormsModule],
+  imports: [FormsModule, ReactiveFormsModule],
   templateUrl: './createtask.html',
-  styleUrl: './createtask.css'
+  styleUrl: './createtask.css',
+  standalone: true
 })
-export class Createtask {
+export class Createtask implements OnInit {
 
-  private nextId: number = 1; 
+taskForm: FormGroup;
+isUpdateMode: boolean = false;
+
+  private nextId: number = 0; 
   id: number | undefined;
   taskName: string | undefined;
 description: string | undefined;
 dueDate: string | undefined;
 status: string | undefined;
-  isUpdateMode: boolean | undefined;
-  taskForm: any;
 
-  constructor(private createtaskservice: Createtaskservice) {
+  constructor(private createtaskservice: Createtaskservice, private fb: FormBuilder) {
+    this.taskForm = this.fb.group({
+      id: [null],
+      name: ['', Validators.required],
+      description: ['', Validators.required],
+      dueDate: ['', Validators.required],
+      status: ['', Validators.required]
+    });
   }
 
-  onCreateTask() {
+  
+
+
+  /*onCreateTask() {
     const newTask = {
       id: this.nextId++,
       name: this.taskName,
@@ -32,16 +45,40 @@ status: string | undefined;
     };
     console.log('Creating task:', newTask);
     this.createtaskservice.addData(newTask);
+  }*/
+
+     onCreateTask(): void {
+    if (this.taskForm.valid) {
+      const taskData = this.taskForm.value;
+      
+      if (this.isUpdateMode) {
+        this.createtaskservice.updateData(taskData);
+
+        console.log('Updating task:', taskData);
+        // Call your service to update the task
+      } else {
+        // Assume you need an ID for new tasks. This is for demonstration.
+        // The service should likely handle the ID.
+        // taskData.id = this.createtaskservice.getNextId(); 
+         taskData.id = this.createtaskservice.getNextId(); // Auto-increment ID
+
+        console.log('Creating task:', taskData);
+        this.createtaskservice.addData(taskData);
+      }
+      
+      this.taskForm.reset();
+      this.isUpdateMode = false;
+      // this.router.navigate(['/task-list']); // Navigate back to list after action
+    } else {
+      console.log('Form is invalid.');
+    }
   }
 
-  ngOnInit(): void {
-    const state = history.state; // Retrieve state object
-    
-    // Check if the state contains task data for an update
+   ngOnInit(): void {
+    const state = history.state;
     if (state.taskToUpdate) {
       this.isUpdateMode = true;
-      // Use patchValue() to set the form controls with the task's data
-      this.taskForm.patchValue(state.taskToUpdate);
+      this.taskForm.patchValue(state.taskToUpdate); // Patch using the exact object
     }
   }
 
