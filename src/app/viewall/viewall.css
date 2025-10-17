@@ -16,7 +16,7 @@ table {
 
 /* Header styling */
 thead {
-  background-color: #4f46e5; /* A primary color for headers */
+  background-color: #0c1413; /* A primary color for headers */
   color: white;
 }
 
@@ -75,4 +75,10 @@ button:hover {
 .delete-button {
   background-color: #ef4444; /* Red for "Delete" */
   color: white;
+}
+
+.table-wrapper {
+  max-width: 600px; /* or any width you prefer */
+  margin: 20px auto; /* centers the table horizontally */
+  padding: 0 15px;   /* optional: adds some side spacing on small screens */
 }

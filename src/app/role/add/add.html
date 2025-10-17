@@ -1,0 +1,9 @@
+<main class="task-form-container">
+  <h2>{{ isUpdateMode ? 'Update Role' : 'Create New Role' }}</h2>
+
+  <form [formGroup]="taskForm" class="task-form" (ngSubmit)="onAddRole()">
+    <label for="role">Role</label>
+    <input type="text" formControlName="roleName" placeholder="Enter role name" />
+    <button type="submit">{{ isUpdateMode ? 'Update' : 'Create' }}</button>
+  </form>
+</main>

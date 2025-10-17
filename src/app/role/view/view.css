@@ -1,0 +1,5 @@
+.table-wrapper {
+  max-width: 600; /* or any width you prefer */
+  margin: 20px auto; /* centers the table horizontally */
+  padding: 0 15px;   /* optional: adds some side spacing on small screens */
+}

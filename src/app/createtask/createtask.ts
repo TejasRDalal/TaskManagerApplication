@@ -34,19 +34,6 @@ status: string | undefined;
 
   
 
-
-  /*onCreateTask() {
-    const newTask = {
-      id: this.nextId++,
-      name: this.taskName,
-      description: this.description,
-      dueDate: this.dueDate,
-      status: this.status
-    };
-    console.log('Creating task:', newTask);
-    this.createtaskservice.addData(newTask);
-  }*/
-
      onCreateTask(): void {
     if (this.taskForm.valid) {
       const taskData = this.taskForm.value;
