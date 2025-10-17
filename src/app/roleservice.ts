@@ -26,16 +26,16 @@ export class Roleservice {
   }
 
 
-
   updateRole(updatedRole: any): Observable<any> {
-    const index = this.roles.findIndex(role => role.id === updatedRole.id);
-    updatedRole.id = index !== -1 ? updatedRole.id : this.getNextId();
-    if (index !== -1) {
-      this.roles[index] = updatedRole;
+    console.log('Updated Role:', updatedRole);
       return this.http.put('http://localhost:8080/roles/update', updatedRole);
-    } else {
-      return null as any; // or handle the error as needed
-    }
   }
+
+  deleteRole(roleId: number): Observable<any> {
+    console.log('Roleservice deleteRole called with ID:', roleId);
+  const url = `http://localhost:8080/roles/delete/${roleId}`;
+  console.log('Deleting role with ID:', roleId);
+  return this.http.delete(url);
+}
   
 }

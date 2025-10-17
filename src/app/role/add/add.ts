@@ -18,6 +18,8 @@ export class Add implements OnInit {
 
    id: number | undefined;
   roleName: string | undefined;
+  selectedRoleId: number | null = null;
+
 
   constructor(private roleservice: Roleservice, private fb: FormBuilder) {
     this.taskForm = this.fb.group({
@@ -27,9 +29,12 @@ export class Add implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log('History state:', history.state);
     const state = history.state;
     if (state.taskToUpdate) {
       this.isUpdateMode = true;
+      this.selectedRoleId = state.taskToUpdate.id;
+      console.log('Updating role with ID:', this.selectedRoleId);
       this.taskForm.patchValue(state.taskToUpdate); // Patch using the exact object
     }
   }
@@ -38,8 +43,9 @@ export class Add implements OnInit {
   if (this.taskForm.valid) {
     const roleData = this.taskForm.value;
     if (this.isUpdateMode) {
-      console.log('Update data ', roleData);
-      this.roleservice.updateRole(roleData).subscribe({
+      const updatedRole = { ...roleData, id: this.selectedRoleId };
+      console.log('Update data ', updatedRole);
+      this.roleservice.updateRole(updatedRole).subscribe({
         next: (res) => console.log('Role updated:', res),
         error: (err) => console.error('Update failed:', err)
       });
@@ -58,6 +64,8 @@ export class Add implements OnInit {
     console.log('Form is invalid.');
   }
 }
+
+
 
 
   /*onAddRole(): void {
