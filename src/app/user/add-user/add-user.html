@@ -1,0 +1,26 @@
+<main class="task-form-container">
+  <h2>{{ isUpdateMode ? 'Update User' : 'Create New User' }}</h2>
+
+  <form [formGroup]="userTaskForm" class="task-form" (ngSubmit)="onCreateUser()">
+    <label for="firstName">First Name</label>
+    <input type="text" formControlName="firstName" placeholder="Enter first name" />
+
+    <label for="middleName">Middle Name</label>
+    <input type="text" formControlName="middleName" placeholder="Enter middle name" />
+
+    <label for="lastName">Last Name</label>
+    <input type="text" formControlName="lastName" placeholder="Enter last name" />
+
+    <label for="role">Role</label>
+    <div formGroupName="role">
+      <select formControlName="id">
+        <option value="" disabled selected>Select Role</option>
+        @for (role of roles; track role.id) {
+          <option [value]="role.id">{{ role.roleName }}</option>
+        }
+      </select>
+    </div>
+
+    <button type="submit">{{ isUpdateMode ? 'Update' : 'Create' }}</button>
+  </form>
+</main>

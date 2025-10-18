@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, Validators, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Createtaskservice } from '../createtaskservice';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-createtask',
-  imports: [FormsModule, ReactiveFormsModule],
+  imports: [ ReactiveFormsModule],
   templateUrl: './createtask.html',
   styleUrl: './createtask.css',
   standalone: true
