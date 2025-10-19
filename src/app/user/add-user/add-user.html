@@ -3,18 +3,34 @@
 
   <form [formGroup]="userTaskForm" class="task-form" (ngSubmit)="onCreateUser()">
     <label for="firstName">First Name</label>
+    @if (userTaskForm.get('firstName')?.valid) {
+  <span style="color: green;">✅</span>
+} @else {
+    <div class="error-message">❌ Minimum 3 characters required</div>
+  }
+
     <input type="text" formControlName="firstName" placeholder="Enter first name" />
 
     <label for="middleName">Middle Name</label>
+    @if (userTaskForm.get('middleName')?.valid) {
+  <span style="color: green;">✅</span>
+}@else {
+    <div class="error-message">❌ Minimum 3 characters required</div>
+  }
     <input type="text" formControlName="middleName" placeholder="Enter middle name" />
 
     <label for="lastName">Last Name</label>
+    @if (userTaskForm.get('lastName')?.valid) {
+  <span style="color: green;">✅</span>
+}@else {
+    <div class="error-message">❌ Minimum 3 characters required</div>
+  }
     <input type="text" formControlName="lastName" placeholder="Enter last name" />
 
     <label for="role">Role</label>
     <div formGroupName="role">
       <select formControlName="id">
-        <option value="" disabled selected>Select Role</option>
+        <option value="" disabled >Select Role</option>
         @for (role of roles; track role.id) {
           <option [value]="role.id">{{ role.roleName }}</option>
         }

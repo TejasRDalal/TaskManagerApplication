@@ -20,12 +20,13 @@ export const routes: Routes = [
   },
 
   {
-    path: 'user',
-    children: [
-      { path: 'add', component: AddUser },
-      { path: 'view', component: ViewUser }
-    ]
-  }
+  path: 'user',
+  children: [
+    { path: 'add', component: AddUser },
+    { path: 'add/user', component: AddUser }, // for editing
+    { path: 'view', component: ViewUser }
+  ]
+}
 
 
 ];

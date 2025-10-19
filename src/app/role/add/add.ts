@@ -29,13 +29,12 @@ export class Add implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('History state:', history.state);
     const state = history.state;
     if (state.taskToUpdate) {
       this.isUpdateMode = true;
-      this.selectedRoleId = state.taskToUpdate.id;
-      console.log('Updating role with ID:', this.selectedRoleId);
       this.taskForm.patchValue(state.taskToUpdate); // Patch using the exact object
+    }else{
+      this.isUpdateMode = false;
     }
   }
 

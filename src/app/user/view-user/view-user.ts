@@ -25,17 +25,24 @@ export class ViewUser implements OnInit {
   }
 
   userUpdate(user: any) {
-    this.router.navigate(['/user/add-user/add-user', user.id]);
-  }
+    console.log('Navigating to edit user:', user);
+  this.router.navigate(['/user/add'],{
+      state: { 
+        taskToUpdate: user
+       }
+    });
+}
 
- /* userDelete(user: any) {
-    this.userservice.deleteUser(user.id).subscribe({
+  userDelete(user: any) {
+    if (confirm('Are you sure you want to delete this role?')) {
+    this.userservice.deleteUser(user.userId).subscribe({
       next: () => {
         console.log('User deleted');
         this.loadUsers();
       },
       error: err => console.error('Error deleting user', err)
     });
-  }*/
+  }
+}
 
 }
